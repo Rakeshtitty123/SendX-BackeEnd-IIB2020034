@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Request Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      form {
+        /* max-width: 1000px; */
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        width:500px;
+        border-radius: 5px;
+        /* border:1px solid blue; */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+      }
+      input[type="text"]{
+        border:1px solid black;
+      }
+
+      input[type="text"],
+      input[type="checkbox"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="requestForm">
+      <label for="url">URL:</label>
+      <input type="text" id="url" name="url" placeholder="Enter URL" /><br />
+      <label for="customerPaying">Is the customer paying?</label>
+      <input type="checkbox" id="customerPaying" name="customer_paying" /><br />
+      <button type="button" onclick="sendRequest()">Send Request</button>
+    </form>
+
+    <script>
+      function sendRequest() {
+        const url = document.getElementById("url").value;
+        const customerPaying =
+          document.getElementById("customerPaying").checked;
+
+        // Send the request to the server using fetch
+        fetch(
+          `http://localhost:8080/download?url=${url}&customer_paying=${customerPaying}`,
+          {
+            mode: "no-cors",
+          }
+        )
+          .then((response) => {
+            // Handle the response here if needed
+            console.log("Request sent to the server.");
+            // Redirect to a specific URL
+            window.location.href = `http://localhost:8080/download?url=${url}&customer_paying=${customerPaying}`; // Replace with your desired redirection URL
+          })
+          .catch((error) => {
+            console.error("Error sending the request:", error);
+          });
+      }
+    </script>
+  </body>
+</html>
