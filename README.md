@@ -17,7 +17,7 @@ The client-side code is responsible for providing a user interface to enter URLs
 
 1. Clone the repository to your local machine.
 
-2. Open the `client.html` file in a web browser.
+2. Open the `index.html` file in a web browser.
 
 3. Enter the URL you want to crawl and click the "Crawl" button.
 
@@ -32,7 +32,7 @@ The server-side code is responsible for handling incoming requests, checking if 
 2. Ensure you have Go installed.
 
 3. Run the server code by executing the following command:
-
+     `go run server.go`
 
 4. The server listens on port 8080 by default.
 
